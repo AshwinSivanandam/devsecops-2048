@@ -31,6 +31,10 @@ data "aws_subnets" "public" {
     name   = "vpc-id"
     values = [data.aws_vpc.default.id]
   }
+filter {
+    name   = "availability-zone"
+    values = ["us-east-1a", "us-east-1b"]  # Pick 2 supported AZs
+  }
 }
 #cluster provision
 resource "aws_eks_cluster" "example" {
